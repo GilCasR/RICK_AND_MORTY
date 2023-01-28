@@ -1,0 +1,37 @@
+.card{
+    font-size: 15px;
+    background-color: aquamarine;
+    padding: 15px;
+    width: 350px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.app{
+    background-image: url("https://t3.ftcdn.net/jpg/05/37/17/24/360_F_537172411_C4GmfD6cpU7mrra2CYzyYUL34w3Bk1mN.jpg");
+    height: max-content;
+    background-size: cover;
+}
+
+.ph{
+    border-radius: 20px;
+}
+
+.nav{
+    background-color: aquamarine;
+    height: 50px;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-content: flex-end;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.img {
+    border-radius: 20px;
+}
