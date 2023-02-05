@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route, useLocation} from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import './App.css'
  //import Card from './components/Card.jsx'
 import Cards from './components/Cards.jsx'
@@ -15,9 +17,25 @@ import Form from './components/form/Form';
 
 function App () {
   const [characters, setCharacters] = useState ([]);
-  const logInLocation = useLocation()
+  const [access, setAccess] = useState (false);
+  const logInLocation = useLocation();
+  const navigate = useNavigate()
+  let username = "andresillo1501@gmail.com";
+  let password = "test123";
 
   //onSearch function
+function login (loginData){
+  if(loginData.username === username && loginData.password === password){
+    setAccess(true);
+    navigate("/home");
+  }else{
+  alert ("Usuario o contraseña incorrecta")
+  }
+}
+
+useEffect(() => {
+  !access && navigate('/');
+}, [access]);
 
   const onSearch = (character) => {
     fetch(`https://rickandmortyapi.com/api/character/${character}`)
@@ -45,7 +63,7 @@ function App () {
         {logInLocation.pathname !== "/" && <Nav onSearch={onSearch} />}
       </div>
       <Routes>
-        <Route path ="/" element = {<Form/>}/>
+        <Route path ="/" element = {<Form login={login}/>}/>
         <Route path = "/home" element = {<Cards characters={characters} onClose={onClose} />}/>
         <Route path ='/about' element = { <About/>}/>
         <Route path = "/detail/:detailId" element={<Detail/>}/>
